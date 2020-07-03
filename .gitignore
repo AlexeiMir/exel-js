@@ -1,2 +1,4 @@
 .idea
 npm-modules
+node_modules
+dist
