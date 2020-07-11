@@ -84,10 +84,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: {
-                    loader: 'babel-loader',
-                    use: jsLoaders()
-                }
+                use: jsLoaders()
             }
         ]
     }
