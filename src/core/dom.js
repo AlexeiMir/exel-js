@@ -5,21 +5,28 @@ class Dom {
             : selector
     }
     html(html) {
-     if (typeof html === 'string') {
+     if (typeof html !== 'undefined') {
          this.$el.innerHTML = html
          return this
      }
      return this.$el.outerHTML.trim()
     }
     text(text) {
-        if (typeof text === 'string') {
+        if (typeof text !== 'undefined') {
             this.$el.textContent = text
             return this
         }
         if (this.$el.tagName.toLowerCase() === 'input') {
-            this.$el.value.trim()
+            return this.$el.value.trim()
         }
         return this.$el.textContent.trim()
+    }
+    attr(name, value) {
+        if (value) {
+            this.$el.setAttribute(name, value)
+            return this
+        }
+        return this.$el.getAttribute(name)
     }
     clear() {
         this.html('')
@@ -53,6 +60,12 @@ class Dom {
  * */
     css(styles = {}) {
         Object.keys(styles).forEach(key => this.$el.style[key] = styles[key])
+    }
+    getStyles(styles = []) {
+        return styles.reduce((res, s) => {
+            res[s] = this.$el.style[s]
+            return res
+        }, {})
     }
     find(selector) {
        return $(this.$el.querySelector(selector))

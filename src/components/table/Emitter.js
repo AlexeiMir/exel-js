@@ -4,6 +4,9 @@ export class Emitter {
     }
     // dispatch , fire
     emit(event, ...args) {
+        if (!Array.isArray(this.listeners[event])) {
+            return false
+        }
         this.listeners[event].forEach(listener => listener(...args))
     }
     subscribe(event, fn) {
