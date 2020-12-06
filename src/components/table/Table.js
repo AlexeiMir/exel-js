@@ -59,7 +59,6 @@ export class Table extends ExcelComponent {
         this.$emit('table-select', $cell)
         const styles = Object.keys(defaultStyles)
         this.$dispatch(actions.changeStyle($cell.getStyles(styles)))
-        console.log('Styles to dispatch', styles)
     }
     async resizeTable(event) {
         try {
@@ -74,7 +73,6 @@ export class Table extends ExcelComponent {
             this.resizeTable(event)
         } else if (isCell(event)) {
             const $target = $(event.target)
-            console.log(event)
             if (event.shiftKey) {
                 const $cells = matrix($target, this.selection.current)
                     .map(id => this.$root.find(`[data-id = "${id}"]`))
