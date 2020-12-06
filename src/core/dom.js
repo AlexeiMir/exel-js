@@ -5,7 +5,7 @@ class Dom {
             : selector
     }
     html(html) {
-     if (typeof html !== 'undefined') {
+     if (typeof html === 'string') {
          this.$el.innerHTML = html
          return this
      }
@@ -94,7 +94,6 @@ class Dom {
         } else {
             this.$el.appendChild(node)
         }
-        console.log(this.$el)
         return this
     }
     on(eventType, callback) {
